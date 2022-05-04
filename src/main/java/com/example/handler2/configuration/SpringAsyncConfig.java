@@ -19,6 +19,7 @@ public class SpringAsyncConfig implements AsyncConfigurer {
         executor.setCorePoolSize(10);
         executor.setMaxPoolSize(30);
         executor.setQueueCapacity(50);
+        executor.initialize();
         return executor;
     }
 }
