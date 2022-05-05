@@ -1,4 +1,4 @@
-package com.example.handler2;
+package com.example.paymenthandler;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

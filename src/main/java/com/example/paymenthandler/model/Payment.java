@@ -1,4 +1,4 @@
-package com.example.handler2.model;
+package com.example.paymenthandler.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

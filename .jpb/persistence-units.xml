@@ -4,7 +4,7 @@
     <persistence-units>
       <persistence-unit name="Default">
         <packages>
-          <package value="com.example.handler2" />
+          <package value="com.example.paymenthandler" />
         </packages>
       </persistence-unit>
     </persistence-units>

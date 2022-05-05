@@ -1,7 +1,7 @@
-package com.example.handler2.controller;
+package com.example.paymenthandler.controller;
 
-import com.example.handler2.model.Payment;
-import com.example.handler2.service.PaymentService;
+import com.example.paymenthandler.model.Payment;
+import com.example.paymenthandler.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class Controller {
     }
 
     @PostMapping("/payment-handler")
-    public ResponseEntity<?> handlePayment(@RequestBody List<Payment> payments) {
+    public ResponseEntity<HttpStatus> handlePayment(@RequestBody List<Payment> payments) {
         paymentService.changePaymentStatus(payments);
 
         return ResponseEntity.ok(HttpStatus.OK);
