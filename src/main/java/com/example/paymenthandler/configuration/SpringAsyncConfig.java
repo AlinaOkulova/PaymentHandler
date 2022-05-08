@@ -1,5 +1,6 @@
 package com.example.paymenthandler.configuration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 
+@Slf4j
 @Configuration
 @EnableAsync
 public class SpringAsyncConfig implements AsyncConfigurer {
@@ -27,9 +29,9 @@ public class SpringAsyncConfig implements AsyncConfigurer {
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return (ex, method, params) -> {
-            System.out.println("Exception: " + ex.getMessage());
-            System.out.println("Method name: " + method.getName());
-            ex.printStackTrace();
+            log.error("Exception: " + ex.getMessage());
+            log.error("Method name: " + method.getName());
+            log.error("More precise description of error : ", ex);
         };
     }
 }

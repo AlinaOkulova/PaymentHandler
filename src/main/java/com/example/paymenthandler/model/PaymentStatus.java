@@ -5,7 +5,8 @@ import java.util.Random;
 public enum PaymentStatus {
     NEW,
     DONE,
-    FAILED;
+    FAILED,
+    IN_PROCESS;
 
     private static final Random RANDOM = new Random();
 

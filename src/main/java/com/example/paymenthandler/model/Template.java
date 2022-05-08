@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(schema = "communal_payments", name = "client_templates")
+@Table(schema = "communal_payments", name = "templates")
 public class Template {
 
     @Id
