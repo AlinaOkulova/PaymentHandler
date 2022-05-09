@@ -1,8 +1,7 @@
 package com.example.paymenthandler.controller;
 
-import com.example.paymenthandler.model.Payment;
-import com.example.paymenthandler.service.PaymentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.paymenthandler.dto.PaymentDto;
+import com.example.paymenthandler.service.PaymentHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,17 +15,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class Controller {
 
-    private final PaymentService paymentService;
+    private final PaymentHandler paymentHandler;
 
-    @Autowired
-    public Controller(PaymentService paymentService) {
-        this.paymentService = paymentService;
+    public Controller(PaymentHandler paymentHandler) {
+        this.paymentHandler = paymentHandler;
     }
 
     @PostMapping("/payment-handler")
-    public ResponseEntity<HttpStatus> handlePayment(@RequestBody List<Payment> payments) {
-        paymentService.changePaymentStatus(payments);
-
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<HttpStatus> handlePayment(@RequestBody List<PaymentDto> payments) {
+        paymentHandler.handlePayments(payments);
+        return ResponseEntity.ok(HttpStatus.PROCESSING);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.paymenthandler.model;
+package com.example.paymenthandler.service;
 
 import java.util.Random;
 
