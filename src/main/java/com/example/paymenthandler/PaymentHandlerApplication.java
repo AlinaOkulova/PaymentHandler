@@ -13,5 +13,4 @@ public class PaymentHandlerApplication {
     public static void main(String[] args) {
         SpringApplication.run(PaymentHandlerApplication.class, args);
     }
-
 }
