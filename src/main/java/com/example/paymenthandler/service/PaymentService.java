@@ -39,7 +39,7 @@ public class PaymentService {
 
     private void sendHandledPayments(PaymentDto payment) {
         try {
-            URI url = new URI("http://localhost:8080/api/handled-payments/save");
+            URI url = new URI("http://localhost:8080/api/handled-payments/saving");
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<PaymentDto> httpEntity = new HttpEntity<>(payment, httpHeaders);
