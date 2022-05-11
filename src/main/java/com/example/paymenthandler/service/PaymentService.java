@@ -27,25 +27,29 @@ public class PaymentService {
     public void changePaymentStatus(PaymentDto payment) {
         PaymentStatus status = PaymentStatus.NEW;
         long id = payment.getId();
+        log.info("Взял в работу оплату с id " + id);
         try {
             TimeUnit.SECONDS.sleep(2);
             status = PaymentStatus.getRandomPaymentStatus();
+            log.info("Оплата с id " + id + ", статус оплаты: " + status);
         } catch (InterruptedException e) {
-            log.error("Error in processing payment with id " + payment.getId() + " " + e.getMessage());
-            log.error("More precise description of error : ", e);
+            log.error("Ошибка во время обработки оплаты с id " + payment.getId() + " " + e.getMessage());
+            log.error("Более точное описание ошибки: ", e);
         }
         sendHandledPayments(new PaymentDto(id, status));
     }
 
     private void sendHandledPayments(PaymentDto payment) {
         try {
-            URI url = new URI("http://localhost:8080/api/handled-payments/saving");
+            log.info("Отправка обработанной оплаты с id " + payment.getId() + " в сервис Communal payments");
+            URI uri = new URI("http://localhost:8080/api/handled-payments/saving");
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<PaymentDto> httpEntity = new HttpEntity<>(payment, httpHeaders);
-            restTemplate.exchange(url, HttpMethod.POST, httpEntity, HttpStatus.class);
+            restTemplate.exchange(uri, HttpMethod.POST, httpEntity, HttpStatus.class);
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            log.error("Ошибка в URI сервиса");
+            log.error(e.getMessage(), e);
         }
     }
 }
