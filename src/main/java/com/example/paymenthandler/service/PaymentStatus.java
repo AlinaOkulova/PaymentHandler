@@ -10,7 +10,7 @@ public enum PaymentStatus {
 
     private static final Random RANDOM = new Random();
 
-    public static PaymentStatus getRandomPaymentStatus()  {
+    public static PaymentStatus getRandomPaymentStatus() {
         return PaymentStatus.values()[RANDOM.nextInt(3)];
     }
 }
