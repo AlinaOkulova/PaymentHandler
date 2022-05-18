@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "template": {
+      "id": 1,
+      "name": "газ",
+      "iban": "UA230256899632123000000253696",
+      "purposeOfPayment": "за газ лиц.счет 235689"
+    },
+    "cardNumber": "4441114450791395",
+    "amount": 896.15,
+    "status": "NEW",
+    "timeOfCreation": "2022-05-18T21:05:29",
+    "timeStatusChange": "2022-05-18T21:05:29"
+  }
+]

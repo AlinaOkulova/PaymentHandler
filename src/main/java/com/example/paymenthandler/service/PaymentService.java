@@ -3,14 +3,13 @@ package com.example.paymenthandler.service;
 
 import com.example.paymenthandler.dto.PaymentDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -18,8 +17,11 @@ import java.util.concurrent.TimeUnit;
 public class PaymentService {
 
     private final RestTemplate restTemplate;
+    private final String url;
 
-    public PaymentService(RestTemplateBuilder builder) {
+    public PaymentService(@Value("${rest.service.COMMUNAL_PAYMENTS_API.url}") String url,
+                          RestTemplateBuilder builder) {
+        this.url = url;
         this.restTemplate = builder.build();
     }
 
@@ -40,16 +42,10 @@ public class PaymentService {
     }
 
     private void sendHandledPayments(PaymentDto payment) {
-        try {
-            log.info("Отправка обработанной оплаты id: " + payment.getId() + " в сервис Communal payments");
-            URI uri = new URI("http://localhost:8080/api/handled-payments/saving");
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<PaymentDto> httpEntity = new HttpEntity<>(payment, httpHeaders);
-            restTemplate.exchange(uri, HttpMethod.POST, httpEntity, HttpStatus.class);
-        } catch (URISyntaxException e) {
-            log.error("Ошибка в URI сервиса Communal payments");
-            log.error(e.getMessage(), e);
-        }
+        log.info("Отправка обработанной оплаты id: " + payment.getId() + " в сервис Communal payments");
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<PaymentDto> httpEntity = new HttpEntity<>(payment, httpHeaders);
+        restTemplate.exchange(url, HttpMethod.POST, httpEntity, HttpStatus.class);
     }
 }

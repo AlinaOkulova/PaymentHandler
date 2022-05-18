@@ -19,8 +19,6 @@ public class PaymentHandler {
 
     @Async
     public void handlePayments(List<PaymentDto> payments) {
-        for (PaymentDto p : payments) {
-            paymentService.changePaymentStatus(p);
-        }
+        payments.forEach(paymentService::changePaymentStatus);
     }
 }

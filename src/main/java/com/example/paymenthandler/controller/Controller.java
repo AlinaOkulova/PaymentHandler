@@ -24,6 +24,6 @@ public class Controller {
     @PostMapping("/payment-handler")
     public ResponseEntity<HttpStatus> handlePayment(@RequestBody List<PaymentDto> payments) {
         paymentHandler.handlePayments(payments);
-        return ResponseEntity.ok(HttpStatus.PROCESSING);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
