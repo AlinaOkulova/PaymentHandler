@@ -1,6 +1,5 @@
 package com.example.paymenthandler.functionaltests;
 
-import com.example.paymenthandler.util.RestAssuredUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.testcontainers.junit.jupiter.Testcontainers;
